@@ -1,0 +1,34 @@
+{
+  "name": "clothes-store-micro-services",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Hasmasan Dragos <hasmasandragos13@gmail.com>",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "products/*"
+    ]
+  },
+  "scripts": {
+    "start": "concurrently \"wsrun --parallel start\"",
+    "start:live": "concurrently \"wsrun --parallel start:live\"",
+    "build:all": "concurrently \"wsrun --parallel build\"",
+    "serve:all": "concurrently \"wsrun --parallel serve -s\"",
+    "build:serve:all": "yarn run build:all && yarn run serve:all",
+
+    "build:items_service": "cd products/items_service && yarn build",
+    "build:blog_service": "cd products/blog_service && yarn build",
+    "build:checkout_service": "cd products/checkout_service && yarn build",
+    "build:shared": "cd products/shared && yarn build",
+    "build:blog": "cd products/blog && yarn build",
+    "build:checkout": "cd products/checkout && yarn build",
+    "build:items": "cd products/items && yarn build",
+    "build:frontend_shell": "cd products/frontend_shell && yarn build"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "lerna": "^3.22.1",
+    "rimraf": "^3.0.2",
+    "wsrun": "^5.2.4"
+  }
+}

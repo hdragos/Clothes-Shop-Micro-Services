@@ -1,0 +1,90 @@
+version: "3.5"
+services:
+  checkout_service:
+    container_name: checkout_service
+    build:
+      context: .
+      dockerfile: ./docker/checkout_service/Dockerfile
+    command: ["npm", "--prefix", "products/checkout_service", "start"]
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./products/checkout_service:/clothes-store-micro-services/products/checkout_service
+  
+
+  blog_service:
+    container_name: blog_service
+    build:
+      context: .
+      dockerfile: ./docker/blog_service/Dockerfile
+    command: ["npm", "--prefix", "products/blog_service", "start"]
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./products/blog_service:/clothes-store-micro-services/products/blog_service
+  
+  items_service:
+    container_name: items_service
+    build:
+      context: .
+      dockerfile: ./docker/items_service/Dockerfile
+    command: ["npm", "--prefix", "products/items_service", "start"]
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./products/items_service:/clothes-store-micro-services/products/items_service
+  
+  shared:
+    container_name: shared
+    build:
+      context: .
+      dockerfile: ./docker/shared/Dockerfile
+    command: ["npm", "--prefix", "products/shared", "start"]
+    ports: 
+      - "3004:3004"
+    volumes:
+      - ./products/shared:/clothes-store-micro-services/products/shared
+  
+  blog:
+    container_name: blog
+    build:
+      context: .
+      dockerfile: ./docker/blog/Dockerfile
+    command: ["npm", "--prefix", "products/blog", "start"]
+    ports: 
+      - "3003:3003"
+    volumes:
+      - ./products/blog:/clothes-store-micro-services/products/blog
+  
+  checkout:
+    container_name: checkout
+    build:
+      context: .
+      dockerfile: ./docker/checkout/Dockerfile
+    command: ["npm", "--prefix", "products/checkout", "start"]
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./products/checkout:/clothes-store-micro-services/products/checkout
+
+  items:
+    container_name: items
+    build:
+      context: .
+      dockerfile: ./docker/items/Dockerfile
+    command: ["npm", "--prefix", "products/items", "start"]
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./products/items:/clothes-store-micro-services/products/items
+
+  frontend_shell:
+    container_name: frontend_shell
+    build:
+      context: .
+      dockerfile: ./docker/frontend_shell/Dockerfile
+    command: ["npm", "--prefix", "products/frontend_shell", "start"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./products/frontend_shell:/clothes-store-micro-services/products/frontend_shell
