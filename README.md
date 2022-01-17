@@ -12,12 +12,20 @@ service can be manipulated easily using the `docker-compose.yml` file.
 
 # Commands
 
+At first, you will need to install all the needed dependencies, using the following command
+
+> yarn install 
+
+In order to start the project, you can run the following commands:
+
 > yarn start // starts the dev servers
 > 
 > yarn start:live // starts the dev servers with hot reloading on
 > 
 > yarn build:serve:all // buils all MFEs for production and serves them all with serve
->
+
+In order to build and run the Docker containers, run the following commands:
+
 > sudo docker-compose up --build // build all docker containers and start them
 > 
 > sudo docker-compose up // start all the docker containers
